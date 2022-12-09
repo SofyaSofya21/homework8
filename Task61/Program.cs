@@ -24,7 +24,8 @@ else
     triangle[triangle.GetLength(0) - 1, triangle.GetLength(1) - 1] = 1;
 }
 
-DrawTriangleViaRows(triangle);
+
+DrawTriangle(triangle);
 
 
 int ReadInt(string message)
@@ -33,53 +34,19 @@ int ReadInt(string message)
     return Convert.ToInt32(Console.ReadLine());
 }
 
-void DrawTriangleViaRows(int[,] array)
+void DrawTriangle(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
-        string[] row = new string[array.GetLength(1)];
-        for (int index = 0; index < row.Length; index++)
+        Console.SetCursorPosition(Console.WindowWidth/2-array.GetLength(1)/2,i+1);
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            row[index] = Convert.ToString(array[i, index]);
-            if (row[index] == "0")
-                row[index] = " ";
+            if (array[i, j] == 0)
+                Console.Write(" ");
+            else
+                Console.Write(array[i, j]);
         }
-        PrintRow(row, i);
+        Console.WriteLine();
     }
+    Console.WriteLine();
 }
-
-void PrintRow(string[] array, int rawNumber)
-{
-    Console.SetCursorPosition(Console.WindowWidth/2-array.Length/2, 2+rawNumber);
-    for (int i = 0; i < array.Length - 1; i++)
-    {
-        Console.Write(array[i]+ " ");
-    }
-}
-
-// void DrawTriangle(int[,] array)
-// {
-//     int rows = array.GetLength(1);
-//     string additionalZero = string.Empty;
-//     if (rows > 5 && rows < 10)
-//         additionalZero = " ";
-//     else if (rows > 10 && rows < 14)
-//         additionalZero = "  ";
-//     else if (rows > 14)
-//         additionalZero = "   ";
-
-//     for (int i = 0; i < array.GetLength(0); i++)
-//     {
-//         for (int j = 0; j < array.GetLength(1); j++)
-//         {
-//             if (array[i, j] == 0)
-//                 Console.Write(additionalZero);
-//             else
-//                 Console.Write(array[i, j]);
-//         }
-//         Console.WriteLine();
-//     }
-//     Console.WriteLine();
-// }
-
-
